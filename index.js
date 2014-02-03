@@ -24,17 +24,14 @@ var getCount = function(callback) {
       'お気に入られ': 'Hatena Bookmark Follower',
     };
 
-    counts = counts.map(function(count) {
-      var newCount = count;
-      Object.keys(labels).forEach(function(key) {
-        if (key === count.label) {
-          newCount = { label: labels[key], count: count.count };
+    callback(null, counts.reduce(function(memo, count) {
+      Object.keys(labels).forEach(function(label) {
+        if (label === count.label) {
+          memo[labels[label]] = count.count;
         }
       });
-      return newCount;
-    });
-
-    callback(null, counts);
+      return memo;
+    }, {}));
   });
 };
 
