@@ -1,5 +1,5 @@
-Hatena::Bookmark Counter
+cars-counter-hatena-bookmark
 ==============================================================================
 
-A counter for Hatena::Bookmark written in JavaScript(Node.js).
+A [cars](http://github.com/bouzuya/cars) counter for Hatena::Bookmark.
 
