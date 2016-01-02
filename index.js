@@ -1,16 +1,16 @@
-var request = require('request');
+var fetch = require('node-fetch');
 var cheerio = require('cheerio');
 
 var getCount = function(callback) {
   var url = 'http://b.hatena.ne.jp/bouzuya/';
-  request({ url: url }, function(err, res, body) {
-    if (err) return callback(err);
-    if (res.statusCode !== 200) {
-      var e = new Error('invalid status code : ' + res.statusCode);
-      return callback(e);
-    }
-
-    var $ = cheerio.load(body);
+  fetch(url)
+  .then(function(response) {
+    var status = response.status;
+    if (status !== 200) throw new Error('invalid status code : ' + status);
+    return response.text();
+  })
+  .then(function(html) {
+    var $ = cheerio.load(html);
     var counts = [];
     $('#profile-count-navi dl').each(function() {
       var label = $(this).find('dt').text();
@@ -32,6 +32,9 @@ var getCount = function(callback) {
       });
       return memo;
     }, {}));
+  })
+  .catch(function(error) {
+    callback(error);
   });
 };
 

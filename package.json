@@ -23,6 +23,6 @@
   "homepage": "https://github.com/bouzuya/cars-counter-hatena-bookmark",
   "dependencies": {
     "cheerio": "~0.13.1",
-    "request": "~2.33.0"
+    "node-fetch": "1.3.3"
   }
 }
