@@ -2,7 +2,11 @@
   "name": "cars-counter-hatena-bookmark",
   "description": "A cars counter for Hatena::Bookmark",
   "version": "0.0.0",
-  "author": "bouzuya",
+  "author": {
+    "name": "bouzuya",
+    "email": "m@bouzuya.net",
+    "url": "http://bouzuya.net"
+  },
   "bugs": {
     "url": "https://github.com/bouzuya/cars-counter-hatena-bookmark/issues"
   },
