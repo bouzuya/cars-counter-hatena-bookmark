@@ -1,6 +1,3 @@
-var counter = require('../');
-
-counter(function(err, counts) {
-  if (err) throw err;
-  console.log(counts);
-});
+require('../lib/')
+  .default()
+  .then((counts) => console.log(counts), (error) => console.error(error));
