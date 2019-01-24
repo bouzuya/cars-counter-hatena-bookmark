@@ -4,7 +4,11 @@ import fetch from 'node-fetch';
 interface Counts { [k: string]: number; }
 
 export default function main(): Promise<Counts> {
-  const url = 'http://b.hatena.ne.jp/bouzuya/';
+  const usernameOrUndefined = process.env.HATENA_BOOKMARK_USERNAME;
+  const username = typeof usernameOrUndefined === 'undefined'
+    ? 'bouzuya'
+    : usernameOrUndefined;
+  const url = `http://b.hatena.ne.jp/${username}/`;
   return fetch(url)
     .then((response) => {
       const status = response.status;

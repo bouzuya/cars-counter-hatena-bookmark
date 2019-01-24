@@ -2,6 +2,14 @@
 
 A [cars](http://github.com/bouzuya/cars) counter for Hatena::Bookmark.
 
+## Configuration
+
+```bash
+export HATENA_BOOKMARK_USERNAME='bouzuya'
+```
+
+See: [`_env`](_env).
+
 ## Badges
 
 [![npm version][npm-badge-url]][npm-url]
