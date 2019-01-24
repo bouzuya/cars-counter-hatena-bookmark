@@ -16,12 +16,18 @@ export default function main(): Promise<Counts> {
       return response.text();
     })
     .then((html) => {
+      // tslint:disable
+      console.log(html);
       const $ = cheerio.load(html);
-      const labelAndCounts = [] as Array<{ label: string; count: string; }>;
-      $('#profile-count-navi dl').each((_, e) => {
-        const label = $(e).find('dt').text();
-        const count = $(e).find('dd').text().replace(/,/g, '');
-        labelAndCounts.push({ label, count });
+      const labelAndCounts = [] as Array<{ label: string; count: number; }>;
+      $('ul.userprofile-status li').each((_, e) => {
+        const label = $(e).find('.userprofile-status-text').text();
+        const count = parseInt(
+          $(e).find('.userprofile-status-count').text().replace(/,/g, ''),
+          10
+        );
+        if (!isNaN(count))
+          labelAndCounts.push({ label, count });
       });
 
       // tslint:disable:object-literal-key-quotes
@@ -37,7 +43,7 @@ export default function main(): Promise<Counts> {
         return typeof entry === 'undefined'
           ? a
           : { ...a, [entry.key]: count };
-      }, {});
+      }, {} as Counts);
 
       return counts;
     });
